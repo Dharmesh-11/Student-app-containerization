@@ -17,18 +17,18 @@ sudo apt update
 sudo apt install nodejs npm -y
 
 ### ✅ Verify Installation
-
+```
 node -v
 npm -v
-
+```
 ---
 
 ## 📥 2. Install Dependencies
 
 Navigate to your project folder and run:
-
+```
 npm install
-
+```
 This installs all required packages from `package.json`.
 
 ---
@@ -50,9 +50,9 @@ VITE_API_URL="http://<BACKEND_PUBLIC_IP>:8080/api"
 ## 🏗️ 4. Build for Production
 
 Run the following command:
-
+```
 npm run build
-
+```
 ### 📁 Output
 
 - A `dist/` folder will be generated
@@ -63,17 +63,17 @@ npm run build
 ## 🌐 5. Deploy Using Apache Server
 
 ### 📦 Install Apache
-
+```
 sudo apt install apache2 -y
-
+```
 ### ▶️ Start Apache
 
 sudo systemctl start apache2
 
 ### 📂 Copy Build Files
-
+```
 sudo cp -rf dist/* /var/www/html/
-
+```
 ---
 
 ## 🌍 6. Access Application
