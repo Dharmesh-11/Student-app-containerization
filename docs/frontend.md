@@ -1,115 +1,112 @@
 # 🌐 Frontend Setup & Deployment Guide (React)
 
-This document provides step-by-step instructions to set up, build, and deploy the React frontend application.
+This document provides a complete guide to set up, build, deploy, and containerize the React frontend application.
 
 ---
 
 ## 🚀 1. Prerequisites
 
-Make sure the following tools are installed:
+Ensure the following tools are installed on your system:
 
-- Node.js
-- npm (Node Package Manager)
+- Node.js (v16 or higher recommended)
+- npm (comes with Node.js)
+- Git (optional but recommended)
 
-### 📦 Install Node.js & npm (Linux)
+---
 
+## 📦 Install Node.js & npm (Linux)
+```
 sudo apt update
 sudo apt install nodejs npm -y
+```
+---
 
-### ✅ Verify Installation
+## ✅ Verify Installation
 ```
 node -v
 npm -v
 ```
 ---
 
-## 📥 2. Install Dependencies
+## 📥 2. Clone the Repository (Optional)
+```
+git clone <your-repo-url>
+cd frontend
+```
+---
 
-Navigate to your project folder and run:
+## 📦 3. Install Dependencies
 ```
 npm install
 ```
-This installs all required packages from `package.json`.
-
 ---
 
-## ⚙️ 3. Configure Environment Variables
-
-Open the `.env` file:
-
+## ⚙️ 4. Configure Environment Variables
+```
 vim .env
-
-Update the backend API URL:
-
+```
+---
+```
 VITE_API_URL="http://<BACKEND_PUBLIC_IP>:8080/api"
+```
+---
 
-> Replace `<BACKEND_PUBLIC_IP>` with your backend server IP address.
+## 🏗️ 5. Run Application (Development Mode)
+```
+npm run dev
+```
+http://localhost:5173
 
 ---
 
-## 🏗️ 4. Build for Production
-
-Run the following command:
+## 🏗️ 6. Build for Production
 ```
 npm run build
 ```
-### 📁 Output
-
-- A `dist/` folder will be generated
-- Contains optimized production-ready files
-
 ---
 
-## 🌐 5. Deploy Using Apache Server
-
-### 📦 Install Apache
+## 🌐 7. Deploy Using Apache Server
 ```
 sudo apt install apache2 -y
-```
-### ▶️ Start Apache
-
 sudo systemctl start apache2
-
-### 📂 Copy Build Files
-```
 sudo cp -rf dist/* /var/www/html/
 ```
 ---
 
-## 🌍 6. Access Application
-
-Open your browser:
-
-http://localhost:80
-
-Or using server IP:
-
-http://<YOUR_SERVER_IP>
-
+## 🔐 8. Enable HTTPS
+```
+sudo apt install certbot python3-certbot-apache -y
+sudo certbot --apache
+```
 ---
 
-## 📌 Important Notes
+## 🐳 9. Docker Setup
+```
+# Build Stage
+FROM node:18-alpine AS build
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
 
-- Ensure port **80** is open (especially in AWS Security Groups)
-- Backend server must be running
-- Use HTTPS in production for better security
-
+# Production Stage
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
 ---
 
-## 🧠 Troubleshooting
-
-| Problem | Solution |
-|--------|---------|
-| App not loading | Check Apache status (`systemctl status apache2`) |
-| API not working | Verify `.env` URL |
-| Build failed | Run `npm install` again |
-
+## ▶️ Run Docker
+```
+docker build -t react-frontend .
+docker run -d -p 80:80 react-frontend
+```
 ---
-
 
 ## 🎯 Summary
 
-- Install dependencies → `npm install`
-- Configure API → `.env`
-- Build → `npm run build`
-- Deploy → Apache server
+- npm install  
+- npm run dev  
+- npm run build  
+- Deploy Apache / Docker  
