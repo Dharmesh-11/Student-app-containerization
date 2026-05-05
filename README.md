@@ -10,11 +10,11 @@ This project is a full-stack application built using:
 
 # 📚 Project Documentation
 
-Detailed guides for each layer:
+📌 Click below to view detailed setup guides:
 
-- 🌐 [Frontend Setup Guide](docs/frontend.md)
-- ⚙️ [Backend Deployment Guide](docs/backend.md)
-- 🗄️ [Database Configuration Guide](docs/database.md)
+👉 Click here → 🌐 [Frontend Setup Guide](docs/frontend.md)  
+👉 Click here → ⚙️ [Backend Deployment Guide](docs/backend.md)  
+👉 Click here → 🗄️ [Database Configuration Guide](docs/database.md)
 
 ---
 
@@ -67,22 +67,7 @@ Frontend → Backend → Database
 
 - Frontend: http://<SERVER_IP>
 - Backend API: http://<SERVER_IP>:8080
-
----
-
-# 📁 Project Structure
-
-project-root/
-│
-├── frontend/
-├── backend/
-├── docs/
-│   ├── frontend.md
-│   ├── backend.md
-│   ├── database.md
-│
-└── README.md
-
+  
 ---
 
 # 🧠 Troubleshooting
