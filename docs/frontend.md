@@ -106,18 +106,6 @@ http://<YOUR_SERVER_IP>
 
 ---
 
-## 📁 Project Structure
-
-project-root/
-│
-├── src/
-├── public/
-├── dist/        # Production build
-├── package.json
-├── .env
-└── frontend.md
-
----
 
 ## 🎯 Summary
 
