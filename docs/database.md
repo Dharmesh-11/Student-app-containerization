@@ -5,18 +5,18 @@ This guide explains how to install MariaDB, secure it, create a database, and co
 ---
 
 ## 🚀 1. Install MariaDB (Ubuntu)
-
+```
 sudo apt update
 sudo apt install mariadb-server -y
-
+```
 ---
 
 ## 🔐 2. Secure MariaDB Installation
 
 Run the following command:
-
+```
 mysql_secure_installation
-
+```
 ### Follow the prompts to:
 - Set root password
 - Remove anonymous users
@@ -26,9 +26,9 @@ mysql_secure_installation
 ---
 
 ## 🧑‍💻 3. Login to MariaDB
-
+```
 mysql -u root -p
-
+```
 Enter your root password when prompted.
 
 ---
@@ -36,13 +36,14 @@ Enter your root password when prompted.
 ## 🗃️ 4. Create Database & User
 
 ### Create Database
-
+```
 CREATE DATABASE student_db;
+```
 
 ### Grant Privileges
-
+```
 GRANT ALL PRIVILEGES ON student_db.* TO 'username'@'localhost' IDENTIFIED BY 'your_password';
-
+```
 FLUSH PRIVILEGES;
 
 > Replace `username` and `your_password` with your desired credentials.
@@ -62,7 +63,7 @@ You will need the following details:
 ---
 
 ## 📊 6. Create Table
-
+```
 USE student_db;
 
 CREATE TABLE `students` (
@@ -76,13 +77,13 @@ CREATE TABLE `students` (
   `mobile_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
+```
 ---
 
 ## ❌ Exit Database
-
+```
 EXIT;
-
+```
 ---
 
 ## 🧠 Troubleshooting
